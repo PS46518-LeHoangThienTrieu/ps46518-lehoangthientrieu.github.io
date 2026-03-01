@@ -141,7 +141,7 @@ const formatDate = (dateStr) => {
 
 const handleLogout = () => {
   localStorage.removeItem('user_session');
-  window.location.href = '/';
+  // window.location.href = '/';
 };
 </script>
 
