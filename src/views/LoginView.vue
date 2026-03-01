@@ -40,9 +40,10 @@ const isLogin = ref(true);
 const userForm = ref({ username: '', password: '', email: '' });
 
 const handleAuth = () => {
-  const registeredUsers = JSON.parse(
-    localStorage.getItem('registered_users') || '[]'
-  )
+ localStorage.setItem('user_session', JSON.stringify(user))
+
+  const redirect = route.query.redirect || '/'
+  router.replace(redirect);
 
   // ===== ĐĂNG NHẬP =====
   if (isLogin.value) {
@@ -66,6 +67,7 @@ const handleAuth = () => {
       localStorage.setItem('user_session', JSON.stringify(userData))
       alert('Đăng nhập thành công!')
       router.push('/')
+      window.location.reload(); 
     } else {
       alert('Tài khoản hoặc mật khẩu không chính xác!')
     }
