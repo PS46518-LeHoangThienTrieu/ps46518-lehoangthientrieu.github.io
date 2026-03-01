@@ -40,10 +40,9 @@ const isLogin = ref(true);
 const userForm = ref({ username: '', password: '', email: '' });
 
 const handleAuth = () => {
- localStorage.setItem('user_session', JSON.stringify(user))
-
-  const redirect = route.query.redirect || '/'
-  router.replace(redirect);
+  const registeredUsers = JSON.parse(
+    localStorage.getItem('registered_users') || '[]'
+  )
 
   // ===== ĐĂNG NHẬP =====
   if (isLogin.value) {

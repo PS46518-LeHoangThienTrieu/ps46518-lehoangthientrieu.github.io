@@ -89,11 +89,13 @@ const editForm = ref({ displayName: '', email: '', avatar: '', loginAt: '' });
 
 onMounted(() => {
   const session = localStorage.getItem('user_session');
-  if (session) {
-    user.value = JSON.parse(session);
-  } else {
-    router.push('/login');
+
+  if (!session) {
+    router.replace('/login'); // 🔥 replace
+    return;
   }
+
+  user.value = JSON.parse(session);
 });
 
 const handleFileUpload = (event) => {
@@ -130,8 +132,6 @@ const saveProfile = () => {
   
   localStorage.setItem('user_session', JSON.stringify(user.value));
   isEditing.value = false;
-  alert('Cập nhật hồ sơ thành công!');
-  window.location.reload(); 
 };
 
 const formatDate = (dateStr) => {
@@ -141,8 +141,7 @@ const formatDate = (dateStr) => {
 
 const handleLogout = () => {
   localStorage.removeItem('user_session');
-  const redirect = route.query.redirect || '/'
-  router.replace(redirect)
+  router.replace('/login'); // 🔥 BẮT BUỘC
 };
 </script>
 
