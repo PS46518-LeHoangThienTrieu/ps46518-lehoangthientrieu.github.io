@@ -141,7 +141,8 @@ const formatDate = (dateStr) => {
 
 const handleLogout = () => {
   localStorage.removeItem('user_session');
-  router.push('/');
+  const redirect = route.query.redirect || '/'
+  router.replace(redirect)
 };
 </script>
 
