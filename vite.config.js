@@ -3,5 +3,9 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
-  base: '/',   // 👈 RẤT QUAN TRỌNG
+  build: {
+    outDir: 'docs',   // 👈 build thẳng vào docs
+    emptyOutDir: true
+  },
+  base: './'          // 👈 BẮT BUỘC cho GitHub Pages
 })
